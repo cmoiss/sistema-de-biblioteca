@@ -33,11 +33,11 @@ public class Livro {
     @Setter
     private Integer quantidadeTotal;
 
-    public Livro(String titulo, String autor, String isbn, String genero) {
+    public Livro(String titulo, String autor, String genero, String isbn) {
         this.titulo = titulo;
         this.autor = autor;
-        this.isbn = isbn;
         this.genero = genero;
+        this.isbn = isbn;
     }
 
     public Livro(String titulo, String autor, String genero, String isbn, String sinopse, Integer quantidadeTotal) {
