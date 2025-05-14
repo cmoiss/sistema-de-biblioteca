@@ -1,4 +1,4 @@
-package com.unp.biblioteca.virtual.model;
+package com.unp.bibliotecavirtual.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
