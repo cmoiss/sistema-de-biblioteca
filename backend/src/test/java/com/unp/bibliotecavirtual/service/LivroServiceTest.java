@@ -52,9 +52,9 @@ class LivroServiceTest {
 
     @Test
     void cadastrar_deveLancarExcecaoQuandoLivroNulo() {
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(NullPointerException.class,
                 () -> livroService.cadastrar(null),
-                "Deveria lançar IllegalArgumentException quando livro é nulo");
+                "Deveria lançar NullPointerException quando livro é nulo");
     }
 
     @Test

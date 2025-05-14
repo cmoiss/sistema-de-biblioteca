@@ -16,6 +16,10 @@ public class LivroService {
 
     public Livro cadastrar(Livro livro) {
         // Validar se não é nulo
+        if (livro == null) {
+            throw new NullPointerException("Livro não pode ser nulo");
+        }
+
         // Validar se já existe no estoque
 
         return livroRepository.save(livro);
