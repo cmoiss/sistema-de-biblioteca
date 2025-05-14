@@ -1,13 +1,13 @@
 package com.unp.bibliotecavirtual.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-@Entity
 @Getter
+@NoArgsConstructor
+@Entity
 public class Livro {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -32,4 +32,17 @@ public class Livro {
 
     @Setter
     private Integer quantidadeTotal;
+
+    public Livro(String titulo, String autor, String isbn, String genero) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.isbn = isbn;
+        this.genero = genero;
+    }
+
+    public Livro(String titulo, String autor, String genero, String isbn, String sinopse, Integer quantidadeTotal) {
+        this(titulo, autor, genero, isbn);
+        this.sinopse = sinopse;
+        this.quantidadeTotal = quantidadeTotal;
+    }
 }

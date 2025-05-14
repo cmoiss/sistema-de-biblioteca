@@ -26,8 +26,9 @@ public class LivroService {
         return livroRepository.findAll();
     }
 
-    // UPDATE
     public Livro editar(Livro livro) {
+        // Verificar se todos os campos obrigatórios estão sendo preenchidos
+
         Optional<Livro> existente = livroRepository.findById(livro.getId());
         if (existente.isPresent()) {
             return livroRepository.save(livro); // atualiza os dados
@@ -36,8 +37,9 @@ public class LivroService {
         }
     }
 
-    // DELETE
     public void deletar(Livro livro) {
+        // Deve executar SoftDelete
+
         Optional<Livro> existente = livroRepository.findById(livro.getId());
         if (existente.isPresent()) {
             livroRepository.delete(livro);
