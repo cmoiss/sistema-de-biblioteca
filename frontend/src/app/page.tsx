@@ -1,29 +1,15 @@
-import Header from "@/components/Header";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+import MainContent from "@/components/main-content";
 
 export default function Home() {
   return (
     <div>
       <Header />
 
-      <div className="bg-white-smoke">
-        <main></main>
-      </div>
+      <MainContent />
 
-      <div>
-        <footer>
-          Créditos:
-          <ul>
-            <li>
-              <a
-                href="https://www.flaticon.com/free-icons/book"
-                title="book icons"
-              >
-                Book icons created by Freepik - Flaticon
-              </a>
-            </li>
-          </ul>
-        </footer>
-      </div>
+      <Footer />
     </div>
   );
 }
