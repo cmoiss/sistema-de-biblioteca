@@ -53,11 +53,11 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscarClienteID(@PathVariable Long id){
+    public ResponseEntity<?> buscarClienteID(@PathVariable Long id) {
         try {
             Cliente usuario = clienteService.buscarPorId(id);
             return ResponseEntity.ok(ClienteMapperDTO.toResponse(usuario));
-        }catch (ClienteNaoEncontrado ex){
+        } catch (ClienteNaoEncontrado ex) {
             return ResponseEntity.status(NOT_FOUND).body(ex.getMessage());
         }
     }
@@ -70,10 +70,15 @@ public class ClienteController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ClienteResponseDTO> editar(@PathVariable Long id, @RequestBody @Valid ClienteRequestDTO usuarioRequest) {
+    public ResponseEntity<?> editar(@PathVariable Long id, @RequestBody @Valid ClienteRequestDTO usuarioRequest) {
         Cliente usuarioAtualizado = ClienteMapperDTO.toEntity(usuarioRequest);
-        Cliente novoCliente = clienteService.editar(id, usuarioAtualizado);
-        return ResponseEntity.ok(ClienteMapperDTO.toResponse(novoCliente));
+        Cliente novoCliente = null;
+        try {
+            novoCliente = clienteService.editar(id, usuarioAtualizado);
+            return ResponseEntity.ok(ClienteMapperDTO.toResponse(novoCliente));
+        } catch (ClienteNaoEncontrado e) {
+            return ResponseEntity.status(NOT_FOUND).body(e.getMessage());
+        }
     }
 
 //    @DeleteMapping("/{id}")
