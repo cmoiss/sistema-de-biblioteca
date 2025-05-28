@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -32,14 +33,25 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
 
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [mensagem, setMensagem] = useState("");
+  const [titulo, setTitulo] = useState("");
+
+  const router = useRouter();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     if (senha !== confirmarSenha) {
-      alert("As senhas não conicidem!");
+      setTitulo("ERRO NO CADASTRO!");
+      setMensagem("As senhas não coincidem");
+      setDialogOpen(true);
       return;
     }
+
+    setTitulo("CADASTRADO COM SUCESSO!");
+    setMensagem(`Nome: ${nome}\nEmail: ${email}`);
+    setDialogOpen(true);
 
     setDialogOpen(true);
 
@@ -47,8 +59,16 @@ export default function Cadastro() {
   }
 
   return (
+    
     <div className="min-h-screen flex items-center justify-center">
-      <Card className="">
+
+      <div className="absolute top-4 left-4">
+        <Button className="cursor-pointer" variant="outline" onClick={() => router.push("/login")}>
+          ← Voltar
+        </Button>
+      </div>
+
+      <Card className="w-100">
         <CardHeader>
           <CardTitle>Crie sua conta</CardTitle>
           <CardDescription>Preencha todos os campos</CardDescription>
@@ -67,6 +87,16 @@ export default function Cadastro() {
         </CardFooter>
       </Card>
 
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{titulo}</DialogTitle>
+            <DialogDescription className="whitespace-pre-line">
+              {mensagem}
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
