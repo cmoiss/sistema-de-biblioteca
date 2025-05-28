@@ -7,8 +7,8 @@ import { Textarea } from "../../ui/textarea";
 import Gender from "./genero";
 import {
   CreateLivroSchema,
-  CreateLivroType
-} from "@/components/home/create-livro/create-livro-schema";
+  LivroType
+} from "@/models/livro-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function CreateLivroForm() {
@@ -16,11 +16,11 @@ export default function CreateLivroForm() {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<CreateLivroType>({
+  } = useForm<LivroType>({
     resolver: zodResolver(CreateLivroSchema)
   });
 
-  const onSubmit = async (data: CreateLivroType) => {
+  const onSubmit = async (data: LivroType) => {
     /*
      * alert(
       data.titulo +

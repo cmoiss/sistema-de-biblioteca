@@ -56,4 +56,4 @@ export const CreateLivroSchema = z.object({
     .int({ message: "Quantidade deve ser um número inteiro" })
 });
 
-export type CreateLivroType = z.infer<typeof CreateLivroSchema>;
+export type LivroType = z.infer<typeof CreateLivroSchema>;
