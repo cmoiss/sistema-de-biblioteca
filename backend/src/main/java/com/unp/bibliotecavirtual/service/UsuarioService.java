@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UsuarioService {
@@ -36,6 +38,21 @@ public class UsuarioService {
         } else {
             throw new RuntimeException("Usuário não encontrado para edição");
         }
+    }
+
+    public Usuario editar(Long id, Usuario usuarioAtualizado) {
+        Optional<Usuario> existente = usuarioRepository.findById(id);
+
+        if (existente.isEmpty()) throw new EntityNotFoundException("Usuário não encontrado");
+
+        Usuario storedUser = existente.get();
+
+        storedUser.setNome(usuarioAtualizado.getNome());
+        storedUser.setLogin(usuarioAtualizado.getLogin());
+        storedUser.setSenha(usuarioAtualizado.getSenha());
+        // Adicione outros campos que desejar atualizar
+
+        return usuarioRepository.save(storedUser);
     }
 
     public void deletar(Usuario usuario) {
