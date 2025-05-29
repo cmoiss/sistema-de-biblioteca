@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "../../ui/button";
 import {
   DialogHeader,
@@ -7,14 +10,16 @@ import {
   DialogContent,
   DialogTitle,
   DialogDescription,
-  DialogClose,
+  DialogClose
 } from "../../ui/dialog";
 import CreateLivroForm from "./create-livro-form";
 
 export default function CreateLivroModal() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div>
-      <Dialog>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           <Button className="cursor-pointer">Cadastrar livro</Button>
         </DialogTrigger>
@@ -27,7 +32,7 @@ export default function CreateLivroModal() {
             </DialogDescription>
           </DialogHeader>
 
-          <CreateLivroForm />
+          <CreateLivroForm onSuccess={() => setIsOpen(false)} />
 
           <DialogFooter>
             <DialogClose>
@@ -35,7 +40,9 @@ export default function CreateLivroModal() {
                 Cancelar
               </Button>
             </DialogClose>
-            <Button type="submit" form="create-livro-form">Salvar</Button>
+            <Button type="submit" form="create-livro-form">
+              Salvar
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
