@@ -1,14 +1,20 @@
 "use client";
 
+import { CreateLivroSchema, LivroType } from "@/models/livro-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { Textarea } from "../../ui/textarea";
 import Gender from "./genero";
-import { CreateLivroSchema, LivroType } from "@/models/livro-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { URL_API_LIVROS as URL_API } from "@/api-consumer/livro-consumer";
 
-export default function CreateLivroForm() {
+interface CreateLivroFormProps {
+  onSuccess?: () => void;
+}
+
+export default function CreateLivroForm({ onSuccess }: CreateLivroFormProps) {
   const {
     register,
     handleSubmit,
@@ -17,14 +23,19 @@ export default function CreateLivroForm() {
     resolver: zodResolver(CreateLivroSchema)
   });
 
-  const onSubmit = async (data: LivroType) => {
-    // await new Promise((resolve) => setTimeout(resolve, 2000)); // Simula um consumo de API
-    console.log("Dados do livro entiados:", data);
+  const submit = async (data: LivroType) => {
+    try {
+      await axios.post(URL_API, data);
+      console.log("Dados do livro enviados:", data);
+      if (onSuccess) onSuccess(); // Fecha modal
+    } catch (error) {
+      console.error(`Erro na requisção: ${error}`);
+    }
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} id="create-livro-form">
+      <form onSubmit={handleSubmit(submit)} id="create-livro-form">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="titulo">Título</Label>

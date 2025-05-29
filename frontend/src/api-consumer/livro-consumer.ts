@@ -1,10 +1,10 @@
 import { LivroType } from "@/models/livro-schema";
 
-const URL_API = "http://localhost:8080/livros";
+export const URL_API_LIVROS = "http://localhost:8080/livros";
 
 export async function createLivro(livro: LivroType) {
   try {
-    const response = await fetch(URL_API, {
+    const response = await fetch(URL_API_LIVROS, {
       method: "POST",
       headers: {
         "Content-type": "application/json"
