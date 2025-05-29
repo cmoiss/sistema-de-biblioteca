@@ -5,10 +5,7 @@ import { Input } from "../../ui/input";
 import { Label } from "../../ui/label";
 import { Textarea } from "../../ui/textarea";
 import Gender from "./genero";
-import {
-  CreateLivroSchema,
-  LivroType
-} from "@/models/livro-schema";
+import { CreateLivroSchema, LivroType } from "@/models/livro-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export default function CreateLivroForm() {
@@ -21,18 +18,6 @@ export default function CreateLivroForm() {
   });
 
   const onSubmit = async (data: LivroType) => {
-    /*
-     * alert(
-      data.titulo +
-        "\n " +
-        data.autor +
-        "\n " +
-        data.isbn +
-        "\n " +
-        data.quantidade
-    );
-     */
-    
     // await new Promise((resolve) => setTimeout(resolve, 2000)); // Simula um consumo de API
     console.log("Dados do livro entiados:", data);
   };
@@ -45,7 +30,7 @@ export default function CreateLivroForm() {
             <Label htmlFor="titulo">Título</Label>
             <Input id="titulo" {...register("titulo")} />
             {errors.titulo && (
-              <p className="text-red-500">{errors.titulo.message}</p>
+              <p className="text-red-500 mb-2">{errors.titulo.message}</p>
             )}
           </div>
 
@@ -53,7 +38,7 @@ export default function CreateLivroForm() {
             <Label htmlFor="autor">Autor</Label>
             <Input id="autor" {...register("autor")} />
             {errors.autor && (
-              <p className="text-red-500">{errors.autor.message}</p>
+              <p className="text-red-500 mb-2">{errors.autor.message}</p>
             )}
           </div>
 
@@ -61,7 +46,7 @@ export default function CreateLivroForm() {
             <Label htmlFor="sinopse">Sinopse</Label>
             <Textarea id="sinopse" {...register("sinopse")} />
             {errors.sinopse && (
-              <p className="text-red-500">{errors.sinopse.message}</p>
+              <p className="text-red-500 mb-2">{errors.sinopse.message}</p>
             )}
           </div>
 
@@ -75,7 +60,7 @@ export default function CreateLivroForm() {
             </Label>
             <Input id="isbn" className="col-span-3" {...register("isbn")} />
             {errors.isbn && (
-              <p className="text-red-500 col-span-5 text-right">
+              <p className="text-red-500 col-span-5 mb-2">
                 {errors.isbn.message}
               </p>
             )}
@@ -91,7 +76,7 @@ export default function CreateLivroForm() {
               {...register("quantidade", { valueAsNumber: true })}
             />
             {errors.quantidade && (
-              <p className="text-red-500 col-span-5 text-right">
+              <p className="text-red-500 col-span-5 mb-2">
                 {errors.quantidade.message}
               </p>
             )}

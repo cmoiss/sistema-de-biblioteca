@@ -19,7 +19,7 @@ export default function CreateLivroModal() {
           <Button className="cursor-pointer">Cadastrar livro</Button>
         </DialogTrigger>
 
-        <DialogContent>
+        <DialogContent className="overflow-y-auto max-h-[90vh]">
           <DialogHeader>
             <DialogTitle>Cadastrar livro</DialogTitle>
             <DialogDescription>
