@@ -2,11 +2,14 @@ package com.unp.bibliotecavirtual.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
 
 @Getter
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
+@Table(name = "clientes")
+@SQLDelete(sql = "UPDATE clientes SET deleted = true WHERE id = ?")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +20,8 @@ public class Cliente {
     @Column(nullable = false)
     private String nome;
 
+    @NonNull
+    @Setter
     @Column(unique = true)
     private String cpf;
 
@@ -30,6 +35,8 @@ public class Cliente {
     @Column(nullable = false)
     private String senha;
 
+    @Column(nullable = false)
+    private boolean deleted = false;
 
     public void avaliarLivro(Livro livro, Integer like) {
         // lógica de avaliação

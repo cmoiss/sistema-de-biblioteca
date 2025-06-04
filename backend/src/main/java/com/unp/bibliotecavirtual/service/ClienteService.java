@@ -14,7 +14,12 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    /** TO-DO
+     * [] Verificar se cliente já existe
+     * */
+    //
     public Cliente cadastrar(Cliente cliente) {
+        if (clienteRepository.existsByCpf(cliente.getCpf())) 
         return clienteRepository.save(cliente);
     }
 
@@ -31,7 +36,8 @@ public class ClienteService {
         Cliente cliente = buscarPorId(id);
 
         cliente.setNome(clienteAtualizado.getNome());
-        cliente.setLogin(clienteAtualizado.getLogin());
+        cliente.setCpf(clienteAtualizado.getCpf());
+        cliente.setEmail(clienteAtualizado.getEmail());
         cliente.setSenha(clienteAtualizado.getSenha());
 
         return clienteRepository.save(cliente);
