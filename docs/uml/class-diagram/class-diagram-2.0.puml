@@ -14,6 +14,10 @@ package "Service" <<Service>> {
     class GeradorRelatorio {
         + gerarRelatorio()
     }
+
+    class RecomendadorLivros {
+        + recomendarLivros(cliente: Cliente): List<Livro>
+    }
 }
 
 ' Estilos por tipo
@@ -33,7 +37,6 @@ class Administrador << (U,#ADD8E6) >> {
 class Cliente << (U,#ADD8E6) >> {
     - cpf: String
     -livroService: LivroService
-    -recomendacaoService: RecomendacaoService
     +avaliarLivro(livro: Livro, like: boolean)
     +receberNotificacao(notificacao: Notificacao)
 }
@@ -114,6 +117,8 @@ Emprestimo --> Multa : usa
 Emprestimo --> RecomendacaoService : "após devolução"
 
 LivroService --> Livro : manipula
+
+RecomendadorLivros --> Cliente : recomenda
 
 Multa --> Notificacao : gera
 
