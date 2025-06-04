@@ -1,14 +1,13 @@
 package com.unp.bibliotecavirtual.service;
+
+import com.unp.bibliotecavirtual.repositorio.EmprestimoRepository;
+import com.unp.bibliotecavirtual.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.unp.bibliotecavirtual.modelo.Emprestimo;
-import com.unp.bibliotecavirtual.modelo.Livro;
-import com.unp.biblioteca.repositorio.EmprestimoRepository;
-import com.unp.biblioteca.repositorio.LivroRepository;
 
 import java.time.LocalDate;
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
