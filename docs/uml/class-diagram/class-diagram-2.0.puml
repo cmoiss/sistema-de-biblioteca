@@ -10,6 +10,10 @@ package "Service" <<Service>> {
     class AutenticadorUsuario {
         +autenticar(): boolean
     }
+
+    class GeradorRelatorio {
+        + gerarRelatorio()
+    }
 }
 
 ' Estilos por tipo
@@ -24,7 +28,6 @@ class Usuario << (U,#ADD8E6) >> {
 }
 
 class Administrador << (U,#ADD8E6) >> {
-    +gerarRelatorio()
 }
 
 class Cliente << (U,#ADD8E6) >> {
@@ -98,6 +101,7 @@ AutenticadorUsuario --> Usuario : autentica
 
 Administrador --> LivroService : usa
 Administrador --> ClienteService : usa
+Administrador --> GeradorRelatorio : usa
 
 Cliente --> LivroService : usa
 Cliente --> RecomendacaoService : usa
