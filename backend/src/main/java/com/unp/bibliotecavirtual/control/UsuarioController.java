@@ -1,6 +1,6 @@
 package com.unp.bibliotecavirtual.control;
 
-import com.unp.bibliotecavirtual.Exception.UsuarioNaoEncontrado;
+import com.unp.bibliotecavirtual.exceptions.UsuarioNaoEncontrado;
 import com.unp.bibliotecavirtual.dto.mapper.UsuarioMapperDTO;
 import com.unp.bibliotecavirtual.dto.request.UsuarioRequestDTO;
 import com.unp.bibliotecavirtual.dto.response.UsuarioResponseDTO;
