@@ -2,6 +2,7 @@ package com.unp.bibliotecavirtual.service;
 
 import java.util.List;
 
+import com.unp.bibliotecavirtual.exceptions.ClienteExistenteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +15,12 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    /** TO-DO
+    /**
+     * TO-DO
      * [] Verificar se cliente já existe
-     * */
-    //
-    public Cliente cadastrar(Cliente cliente) {
-        if (clienteRepository.existsByCpf(cliente.getCpf())) 
+     */
+    public Cliente cadastrar(Cliente cliente) throws ClienteExistenteException {
+        if (clienteRepository.existsByCpf(cliente.getCpf())) throw new ClienteExistenteException();
         return clienteRepository.save(cliente);
     }
 
@@ -29,7 +30,7 @@ public class ClienteService {
 
     public Cliente buscarPorId(Long id) {
         return clienteRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
     }
 
     public Cliente editar(Long id, Cliente clienteAtualizado) {
