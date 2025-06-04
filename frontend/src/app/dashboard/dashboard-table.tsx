@@ -10,7 +10,8 @@ import {
 } from "@/components/ui/table";
 import { Book } from "@/models/book";
 import { books as booksProvided } from "@/models/books-provider";
-import { EditIcon, Trash2Icon } from "lucide-react";
+import DeleteBook from "./delete-book";
+import EditBook from "./edit-book-modal";
 
 export default function DashboardTable() {
   let books: Book[] = [];
@@ -47,12 +48,10 @@ export default function DashboardTable() {
               <TableCell>{book.autor}</TableCell>
               <TableCell>{book.avaliacao}</TableCell>
               <TableCell className="text-right">
-                <button className="mr-2 text-blue-500">
-                  <EditIcon />
-                </button>
-                <button className="text-red-500">
-                  <Trash2Icon />
-                </button>
+                <div className="flex">
+                  <EditBook book={book} />
+                  <DeleteBook book={book} />
+                </div>
               </TableCell>
             </TableRow>
           ))}
