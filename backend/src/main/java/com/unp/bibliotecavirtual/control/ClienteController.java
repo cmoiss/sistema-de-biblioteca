@@ -1,7 +1,9 @@
 package com.unp.bibliotecavirtual.control;
 
+import com.unp.bibliotecavirtual.dto.mapper.ClienteMapperDTO;
 import com.unp.bibliotecavirtual.dto.request.ClienteRequestDTO;
 import com.unp.bibliotecavirtual.dto.response.ClienteResponseDTO;
+import com.unp.bibliotecavirtual.exceptions.ClienteExistenteException;
 import com.unp.bibliotecavirtual.exceptions.ClienteNaoEncontrado;
 import com.unp.bibliotecavirtual.model.Cliente;
 import com.unp.bibliotecavirtual.repository.ClienteRepository;
@@ -14,14 +16,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.unp.bibliotecavirtual.dto.mapper.ClienteMapperDTO.toResponse;
+import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 /**
  * TO-DO:
- * [x] Criar o Mapper do Cliente (Resquet to Entity | Entity to Response)
+ * [] Retorne os StatusCode de Erro nos tratementos de exceção
  **/
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/clientes")
 public class ClienteController {
 
     @Autowired
@@ -30,20 +34,21 @@ public class ClienteController {
     @Autowired
     ClienteRepository clienteRepository;
 
-//    @PostMapping
-//    public ResponseEntity<ClienteResponseDTO> cadastrarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequest){
-//         Cliente cliente = ClienteMapperDTO.toEntity(clienteRequest);
-//
-//        try {
-//            // clienteService.cadastrar(cliente);
-//            //ClienteResponseDTO usuarioResponse = toResponse(cliente);
-//            // return ResponseEntity.status(CREATED).body(usuarioResponse);
-//        } catch (ClienteExistenteException e) {
-//            // Retorne o StatusCode do Erro
-//        }
-//
-//
-//    }
+    @PostMapping
+    public ResponseEntity<ClienteResponseDTO> cadastrarCliente(@RequestBody @Valid ClienteRequestDTO clienteRequest) {
+        Cliente cliente = ClienteMapperDTO.toEntity(clienteRequest);
+
+        try {
+            clienteService.cadastrar(cliente);
+            ClienteResponseDTO usuarioResponse = toResponse(cliente);
+            return ResponseEntity.status(CREATED).body(usuarioResponse);
+        } catch (ClienteExistenteException e) {
+            System.out.println(e.getStackTrace());
+            return null; // Retorne o StatusCode do Erro
+        }
+
+
+    }
 
 //    @GetMapping("/{id}")
 //    public ResponseEntity<?> buscarClienteID(@PathVariable Long id){
