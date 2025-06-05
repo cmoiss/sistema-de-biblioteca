@@ -18,7 +18,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 /**
  * TO-DO:
- * [] Criar o Mapper do Cliente (Resquet to Entity | Entity to Response)
+ * [x] Criar o Mapper do Cliente (Resquet to Entity | Entity to Response)
  **/
 @RestController
 @RequestMapping("/usuarios")
