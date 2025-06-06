@@ -24,6 +24,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
  * TO-DO:
  * [] Retorne os StatusCode de Erro nos tratementos de exceção
  * [] Retornar erro caso cadastro com formato inválido
+ * [] Chamar serviço de cadastro
  **/
 @RestController
 @RequestMapping("/clientes")
@@ -68,12 +69,12 @@ public class ClienteController {
         return ResponseEntity.ok(usuarioResponse);
     }
 
-//    @PutMapping(value = "/{id}")
-//    public ResponseEntity<ClienteResponseDTO> editar(@PathVariable Long id, @RequestBody @Valid ClienteRequestDTO usuarioRequest) {
-//        Cliente usuarioAtualizado = ClienteMapperDTO.toEntity(usuarioRequest);
-//        Cliente novoCliente = clienteService.editar(usuarioAtualizado);
-//        return ResponseEntity.ok(ClienteMapperDTO.toResponse(novoCliente));
-//    }
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ClienteResponseDTO> editar(@PathVariable Long id, @RequestBody @Valid ClienteRequestDTO usuarioRequest) {
+        Cliente usuarioAtualizado = ClienteMapperDTO.toEntity(usuarioRequest);
+        Cliente novoCliente = clienteService.editar(id, usuarioAtualizado);
+        return ResponseEntity.ok(ClienteMapperDTO.toResponse(novoCliente));
+    }
 
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<?> deletarCliente(@PathVariable Long id){

@@ -8,8 +8,9 @@ import org.hibernate.annotations.SQLDelete;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name = "clientes")
-@SQLDelete(sql = "UPDATE clientes SET deleted = true WHERE id = ?")
+// Não sei como aplicar softdelete, apliquem e testem ~Caio
+//@Table(name = "clientes")
+//@SQLDelete(sql = "UPDATE clientes SET deleted = true WHERE id = ?")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
