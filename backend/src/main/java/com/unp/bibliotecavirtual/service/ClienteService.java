@@ -17,7 +17,8 @@ public class ClienteService {
 
     /**
      * TO-DO
-     * [] Verificar se cliente já existe
+     * [] Verificar se cliente já existe (por cpf e email)
+     * [] Lançar exceção caso cliente exista
      */
     public Cliente cadastrar(Cliente cliente) throws ClienteExistenteException {
         if (clienteRepository.existsByCpf(cliente.getCpf())) throw new ClienteExistenteException();

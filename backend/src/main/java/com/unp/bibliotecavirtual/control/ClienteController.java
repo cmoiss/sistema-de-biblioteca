@@ -23,6 +23,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 /**
  * TO-DO:
  * [] Retorne os StatusCode de Erro nos tratementos de exceção
+ * [] Retornar erro caso cadastro com formato inválido
  **/
 @RestController
 @RequestMapping("/clientes")
@@ -50,15 +51,15 @@ public class ClienteController {
 
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<?> buscarClienteID(@PathVariable Long id){
-//        try {
-//            Cliente usuario = clienteService.buscarPorId(id);
-//            return ResponseEntity.ok(ClienteMapperDTO.toResponse(usuario));
-//        }catch (ClienteNaoEncontrado ex){
-//            return ResponseEntity.status(NOT_FOUND).body(ex.getMessage());
-//        }
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarClienteID(@PathVariable Long id){
+        try {
+            Cliente usuario = clienteService.buscarPorId(id);
+            return ResponseEntity.ok(ClienteMapperDTO.toResponse(usuario));
+        }catch (ClienteNaoEncontrado ex){
+            return ResponseEntity.status(NOT_FOUND).body(ex.getMessage());
+        }
+    }
 
 //    @GetMapping
 //    public ResponseEntity<List<ClienteResponseDTO>> buscarTodosCliente(){
