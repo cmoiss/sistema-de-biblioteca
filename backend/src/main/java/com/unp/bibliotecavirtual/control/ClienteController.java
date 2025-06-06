@@ -61,12 +61,12 @@ public class ClienteController {
         }
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<ClienteResponseDTO>> buscarTodosCliente(){
-//        List<Cliente> usuarios = clienteService.buscarTodos();
-//        List<ClienteResponseDTO> usuarioResponse = usuarios.stream().map(ClienteMapperDTO::toResponse).collect(Collectors.toUnmodifiableList());
-//        return ResponseEntity.ok(usuarioResponse);
-//    }
+    @GetMapping
+    public ResponseEntity<List<ClienteResponseDTO>> buscarTodosCliente() {
+        List<Cliente> usuarios = clienteService.buscarTodos();
+        List<ClienteResponseDTO> usuarioResponse = usuarios.stream().map(ClienteMapperDTO::toResponse).collect(Collectors.toUnmodifiableList());
+        return ResponseEntity.ok(usuarioResponse);
+    }
 
 //    @PutMapping(value = "/{id}")
 //    public ResponseEntity<ClienteResponseDTO> editar(@PathVariable Long id, @RequestBody @Valid ClienteRequestDTO usuarioRequest) {
