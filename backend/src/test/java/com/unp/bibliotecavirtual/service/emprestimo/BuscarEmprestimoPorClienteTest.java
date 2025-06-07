@@ -28,10 +28,11 @@ public class BuscarEmprestimoPorClienteTest {
     EmprestimoService emprestimoService;
 
     @Mock
-    ClienteRepository clienteRepository;
+    EmprestimoRepository emprestimoRepository;
 
     @Mock
-    EmprestimoRepository emprestimoRepository;
+    ClienteRepository clienteRepository;
+
 
     Cliente cliente;
     List<Emprestimo> emprestimos;

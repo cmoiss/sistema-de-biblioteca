@@ -1,6 +1,7 @@
 package com.unp.bibliotecavirtual.service;
 
 import com.unp.bibliotecavirtual.exceptions.ClienteNaoEncontrado;
+import com.unp.bibliotecavirtual.exceptions.EmprestimoNotFoundException;
 import com.unp.bibliotecavirtual.exceptions.LivroNaoDisponivelException;
 import com.unp.bibliotecavirtual.exceptions.LivroNotFoundException;
 import com.unp.bibliotecavirtual.model.Cliente;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static com.unp.bibliotecavirtual.service.CalcularPrazoEmprestimo.calcularPrazo;
 
@@ -57,16 +59,11 @@ public class EmprestimoService {
 
         return emprestimoRepository.findByCliente(cliente);
     }
-//
-//    public void deletarEmprestimo(Long id) {
-//        Optional<Emprestimo> existente = emprestimoRepository.findById(id);
-//        if (existente.isPresent()) {
-//            emprestimoRepository.delete(existente.get());
-//        } else {
-//            throw new RuntimeException("Empréstimo não encontrado para exclusão");
-//        }
-//    }
 
+    public void deletarEmprestimo(Long id) throws EmprestimoNotFoundException {
+        Emprestimo emprestimo = emprestimoRepository.findById(id).orElseThrow(EmprestimoNotFoundException::new);
+        emprestimoRepository.delete(emprestimo);
+    }
 
     //    public Emprestimo registrarDevolucao(Long emprestimoId, LocalDate dataDevolucaoReal) {
 //        Optional<Emprestimo> emprestimoOptional = emprestimoRepository.findById(emprestimoId);
