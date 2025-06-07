@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import static com.unp.bibliotecavirtual.service.CalcularPrazoEmprestimo.calcularPrazo;
 
@@ -52,9 +51,12 @@ public class EmprestimoService {
         return emprestimoRepository.findAll();
     }
 
-//    public List<Emprestimo> buscarEmprestimosPorCliente(Long idCliente) {
-//        return emprestimoRepository.findByAutorEmprestimoId(idCliente);
-//    }
+    public List<Emprestimo> buscarEmprestimosPorCliente(Long idCliente) throws ClienteNaoEncontrado {
+        Cliente cliente = clienteRepository.findById(idCliente)
+                .orElseThrow(ClienteNaoEncontrado::new);
+
+        return emprestimoRepository.findByCliente(cliente);
+    }
 //
 //    public void deletarEmprestimo(Long id) {
 //        Optional<Emprestimo> existente = emprestimoRepository.findById(id);

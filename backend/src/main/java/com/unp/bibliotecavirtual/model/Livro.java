@@ -8,6 +8,8 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Getter
 @NoArgsConstructor
 @Entity
+@ToString
+@EqualsAndHashCode
 public class Livro {
     @Id
     @GeneratedValue(strategy = IDENTITY)
