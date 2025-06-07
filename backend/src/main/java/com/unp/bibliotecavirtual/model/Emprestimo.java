@@ -38,5 +38,5 @@ public class Emprestimo {
     private LocalDate dataDevolucao;
 
     @Embedded
-    private Multa multa = new Multa();
+    private Multa multa;
 }

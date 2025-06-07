@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 import static com.unp.bibliotecavirtual.service.CalcularPrazoEmprestimo.calcularPrazo;
 
@@ -46,12 +48,10 @@ public class EmprestimoService {
         return emprestimo;
     }
 
+    public List<Emprestimo> listarTodos() {
+        return emprestimoRepository.findAll();
+    }
 
-//
-//    public List<Emprestimo> listarTodos() {
-//        return emprestimoRepository.findAll();
-//    }
-//
 //    public List<Emprestimo> buscarEmprestimosPorCliente(Long idCliente) {
 //        return emprestimoRepository.findByAutorEmprestimoId(idCliente);
 //    }

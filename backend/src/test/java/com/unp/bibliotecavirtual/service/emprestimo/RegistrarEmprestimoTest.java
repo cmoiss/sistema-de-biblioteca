@@ -1,4 +1,4 @@
-package com.unp.bibliotecavirtual.service;
+package com.unp.bibliotecavirtual.service.emprestimo;
 
 import com.unp.bibliotecavirtual.exceptions.ClienteNaoEncontrado;
 import com.unp.bibliotecavirtual.exceptions.LivroNaoDisponivelException;
@@ -9,6 +9,7 @@ import com.unp.bibliotecavirtual.model.Livro;
 import com.unp.bibliotecavirtual.repository.ClienteRepository;
 import com.unp.bibliotecavirtual.repository.EmprestimoRepository;
 import com.unp.bibliotecavirtual.repository.LivroRepository;
+import com.unp.bibliotecavirtual.service.EmprestimoService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,7 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class EmprestimoServiceTest {
+class RegistrarEmprestimoTest {
     @InjectMocks
     EmprestimoService emprestimoService;
 
@@ -44,7 +45,7 @@ class EmprestimoServiceTest {
     Emprestimo emprestimo;
 
     @BeforeEach
-    void beforeEach() {
+    void setUp() {
         cliente = new Cliente("João da Silva", "12345678909", "joao.silva@example.com", "senhaSegura123");
         livro = new Livro("O pequeno principe", "Alguém Aleatório", "Reflexão Intensa", "1234567890", "Esse livro é massa demais", 10, 89, 10);
 
