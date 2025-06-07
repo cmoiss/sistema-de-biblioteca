@@ -31,7 +31,10 @@ public class Livro {
     private String sinopse;
 
     @Setter
-    private Integer quantidadeTotal;
+    private Integer exemplaresDisponiveisEmEstoque;
+
+    @Setter
+    private Integer numeroPaginas;
 
     @Setter
     private Integer avaliacao;
@@ -43,16 +46,23 @@ public class Livro {
         this.isbn = isbn;
     }
 
-    public Livro(String titulo, String autor, String genero, String isbn, String sinopse, Integer quantidadeTotal) {
+    public Livro(String titulo, String autor, String genero, String isbn, String sinopse, Integer exemplaresDisponiveisEmEstoque) {
         this(titulo, autor, genero, isbn);
         this.sinopse = sinopse;
-        this.quantidadeTotal = quantidadeTotal;
+        this.exemplaresDisponiveisEmEstoque = exemplaresDisponiveisEmEstoque;
     }
 
-    public Livro(String titulo, String autor, String genero, String isbn, String sinopse, Integer quantidadeTotal, Integer avaliacao) {
+    public Livro(String titulo, String autor, String genero, String isbn, String sinopse, Integer exemplaresDisponiveisEmEstoque, Integer avaliacao) {
         this(titulo, autor, genero, isbn);
         this.sinopse = sinopse;
-        this.quantidadeTotal = quantidadeTotal;
+        this.exemplaresDisponiveisEmEstoque = exemplaresDisponiveisEmEstoque;
+        this.avaliacao = avaliacao;
+    }
+
+    public Livro(String titulo, String autor, String genero, String isbn, String sinopse, Integer exemplaresDisponiveisEmEstoque, Integer numeroPaginas, Integer avaliacao) {
+        this(titulo, autor, genero, isbn, sinopse, exemplaresDisponiveisEmEstoque);
+        this.exemplaresDisponiveisEmEstoque = exemplaresDisponiveisEmEstoque;
+        this.numeroPaginas = numeroPaginas;
         this.avaliacao = avaliacao;
     }
 }

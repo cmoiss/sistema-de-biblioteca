@@ -18,7 +18,7 @@ public class Cliente {
 
     @NonNull
     @Setter
-    @Column(nullable = false)
+    @Column(nullable = false, length = 11)
     private String nome;
 
     @NonNull
@@ -36,6 +36,7 @@ public class Cliente {
     @Column(nullable = false)
     private String senha;
 
+    @NonNull
     @Column(nullable = false)
     private boolean deleted = false;
 

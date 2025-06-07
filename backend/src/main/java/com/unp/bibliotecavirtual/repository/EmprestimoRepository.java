@@ -1,8 +1,8 @@
-package com.unp.bibliotecavirtual.repositorio;
+package com.unp.bibliotecavirtual.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import com.unp.bibliotecavirtual.modelo.Emprestimo;
+import com.unp.bibliotecavirtual.model.Emprestimo;
 
 import java.util.List;
 

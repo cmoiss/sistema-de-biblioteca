@@ -1,4 +1,4 @@
-package com.unp.bibliotecavirtual.modelo;
+package com.unp.bibliotecavirtual.model;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;
