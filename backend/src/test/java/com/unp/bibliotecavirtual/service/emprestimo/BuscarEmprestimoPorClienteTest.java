@@ -55,12 +55,11 @@ public class BuscarEmprestimoPorClienteTest {
         assertEquals(emprestimos, emprestimosBuscados);
     }
 
-    @Test
-    void deveLancarExcecaoCasoClienteNaoExista() {
-    }
-
-    @Test
-    void deveRetornarListaVaziaCasoClienteNaoPossuaEmprestimos() {
-
-    }
+//    @Test
+//    void deveLancarExcecaoCasoClienteNaoExista() {
+//    }
+//
+//    @Test
+//    void deveRetornarListaVaziaCasoClienteNaoPossuaEmprestimos() {
+//    }
 }

@@ -65,28 +65,27 @@ class RegistrarEmprestimoTest {
     @Test
     void registrarEmprestimo_DeveRegistrarNovoEmprestimoCasoDadosValidos() throws LivroNotFoundException, ClienteNaoEncontrado, LivroNaoDisponivelException {
         Emprestimo emprestimoRegistrado = emprestimoService.registrarEmprestimo(1L, 1L);
-
         Assertions.assertEquals(emprestimo, emprestimoRegistrado);
         Assertions.assertEquals(livro.getExemplaresDisponiveisEmEstoque(), emprestimoRegistrado.getLivro().getExemplaresDisponiveisEmEstoque());
     }
 
-    @Test
-    void registrarEmprestimo_DeveLancarExcecaoCasoLivroNaoExista() {
-    }
-
-    @Test
-    void registrarEmprestimo_DeveLancarExcecaoCasoClienteNaoExista() {
-    }
-
-    @Test
-    void registrarEmprestimo_DeveLancarExcecaoCasoLivroEstejaIndisponivelNoEstoque() {
-    }
-
-    @Test
-    void registrarEmprestimo_VerificaSeEmprestimoFoiRegistradoCorretamente() {
-    }
-
-    @Test
-    void registrarEmprestimo_VerificaSeQuantidadeDeExemplaresDisponiveisEmEstoqueFoiAlteradaAoRegistrarEmprestimo() {
-    }
+//    @Test
+//    void registrarEmprestimo_DeveLancarExcecaoCasoLivroNaoExista() {
+//    }
+//
+//    @Test
+//    void registrarEmprestimo_DeveLancarExcecaoCasoClienteNaoExista() {
+//    }
+//
+//    @Test
+//    void registrarEmprestimo_DeveLancarExcecaoCasoLivroEstejaIndisponivelNoEstoque() {
+//    }
+//
+//    @Test
+//    void registrarEmprestimo_VerificaSeEmprestimoFoiRegistradoCorretamente() {
+//    }
+//
+//    @Test
+//    void registrarEmprestimo_VerificaSeQuantidadeDeExemplaresDisponiveisEmEstoqueFoiAlteradaAoRegistrarEmprestimo() {
+//    }
 }

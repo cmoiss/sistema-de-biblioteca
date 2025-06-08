@@ -35,7 +35,6 @@ public class ListarTodosTest {
     @Test
     void deveListarTodosOsEmprestimosAtivos() {
         var emprestimosListados = emprestimoService.listarTodos();
-
         assertEquals(emprestimos, emprestimosListados);
     }
 }

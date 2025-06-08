@@ -51,8 +51,7 @@ public class DeletarEmprestimoTest {
         assertTrue(emprestimoBuscado.isEmpty());
     }
 
-    @Test
-    void deveLacarExcecaoCasoTenteDeletarEmprestimoInexistente() {
-
-    }
+//    @Test
+//    void deveLacarExcecaoCasoTenteDeletarEmprestimoInexistente() {
+//    }
 }
