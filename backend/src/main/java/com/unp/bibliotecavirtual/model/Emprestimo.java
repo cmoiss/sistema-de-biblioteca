@@ -39,4 +39,7 @@ public class Emprestimo {
 
     @Embedded
     private Multa multa;
+
+    @NonNull
+    private boolean isAtivo = true;
 }

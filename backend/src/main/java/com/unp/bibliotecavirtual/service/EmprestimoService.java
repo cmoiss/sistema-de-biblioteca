@@ -7,6 +7,7 @@ import com.unp.bibliotecavirtual.exceptions.LivroNotFoundException;
 import com.unp.bibliotecavirtual.model.Cliente;
 import com.unp.bibliotecavirtual.model.Emprestimo;
 import com.unp.bibliotecavirtual.model.Livro;
+import com.unp.bibliotecavirtual.model.Multa;
 import com.unp.bibliotecavirtual.repository.ClienteRepository;
 import com.unp.bibliotecavirtual.repository.EmprestimoRepository;
 import com.unp.bibliotecavirtual.repository.LivroRepository;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,33 +67,36 @@ public class EmprestimoService {
         emprestimoRepository.delete(emprestimo);
     }
 
-    //    public Emprestimo registrarDevolucao(Long emprestimoId, LocalDate dataDevolucaoReal) {
-//        Optional<Emprestimo> emprestimoOptional = emprestimoRepository.findById(emprestimoId);
-//        if (emprestimoOptional.isEmpty()) {
-//            throw new RuntimeException("Empréstimo não encontrado");
-//        }
-//
-//        Emprestimo emprestimo = emprestimoOptional.get();
-//        LocalDate dataPrevista = emprestimo.getDataDevolucao();
-//
-//        double multa = 0;
-//        if (dataDevolucaoReal.isAfter(dataPrevista)) {
-//            long diasAtraso = java.time.temporal.ChronoUnit.DAYS.between(dataPrevista, dataDevolucaoReal);
-//            multa = diasAtraso * 2.0;
-//            emprestimo.setMulta(multa);
-//        }
-//
-//
-//        Livro livro = emprestimo.getLivro();
-//        livro.setQuantidadeDisponivel(livro.getQuantidadeDisponivel() + 1);
-//        livroRepository.save(livro);
-//
-//        emprestimo.setDataDevolucaoReal(dataDevolucaoReal);
-//        emprestimoRepository.save(emprestimo);
-//
-//        return emprestimo;
-//    }
-//    public List<Emprestimo> listarEmprestimosAtivosPorCliente(Long clienteId) {
-//        return emprestimoRepository.findByClienteIdAndDataDevolucaoRealIsNull(clienteId);
-//    }
+    public Emprestimo registrarDevolucao(Long emprestimoId, LocalDate dataDevolucaoReal) throws EmprestimoNotFoundException, LivroNotFoundException {
+        // Empréstimo deve saber a data de devolução baseada no livro automaticamente
+        // Multa deve saber se calcular sozinha, ao receber os dias de atraso
+        // LocalDate devolucaoReal = LocalDate.now();
+
+        Emprestimo emprestimo = emprestimoRepository
+                .findById(emprestimoId)
+                .orElseThrow(EmprestimoNotFoundException::new);
+
+        // Livro deve ser uma entidade gerenciada
+        Livro livro = livroRepository
+                .findById(emprestimo.getLivro().getId())
+                .orElseThrow(LivroNotFoundException::new);
+
+        LocalDate dataDevolucaoPrevista = emprestimo.getDataDevolucao();
+
+        double multa = 0;
+        if (dataDevolucaoReal.isAfter(dataDevolucaoPrevista)) {
+            long diasAtraso = ChronoUnit.DAYS.between(dataDevolucaoPrevista, dataDevolucaoReal);
+            multa = diasAtraso * 2.0;
+            emprestimo.setMulta(new Multa(multa));
+        }
+
+        livro.setExemplaresDisponiveisEmEstoque(livro.getExemplaresDisponiveisEmEstoque() + 1);
+        livroRepository.save(livro);
+
+        emprestimo.setDataDevolucao(dataDevolucaoReal);
+        emprestimo.setAtivo(false);
+        emprestimoRepository.save(emprestimo);
+
+        return emprestimo;
+    }
 }
