@@ -76,13 +76,14 @@ public class ClienteController {
         return ResponseEntity.ok(ClienteMapperDTO.toResponse(novoCliente));
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<?> deletarCliente(@PathVariable Long id){
-//        try {
-//            clienteService.buscarPorId(id);
-//            return ResponseEntity.noContent().build();
-//        }catch (ClienteNaoEncontrado naoEncontrado){
-//            return ResponseEntity.status(NOT_FOUND).body(naoEncontrado.getMessage());
-//        }
-//    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarCliente(@PathVariable Long id){
+        try {
+            clienteService.buscarPorId(id);
+            clienteService.deletar(id);
+            return ResponseEntity.noContent().build();
+        }catch (ClienteNaoEncontrado naoEncontrado){
+            return ResponseEntity.status(NOT_FOUND).body(naoEncontrado.getMessage());
+        }
+    }
 }
