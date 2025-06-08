@@ -3,7 +3,6 @@ package com.unp.bibliotecavirtual.service.emprestimo;
 import com.unp.bibliotecavirtual.exceptions.ClienteNaoEncontrado;
 import com.unp.bibliotecavirtual.model.Cliente;
 import com.unp.bibliotecavirtual.model.Emprestimo;
-import com.unp.bibliotecavirtual.model.Livro;
 import com.unp.bibliotecavirtual.repository.ClienteRepository;
 import com.unp.bibliotecavirtual.repository.EmprestimoRepository;
 import com.unp.bibliotecavirtual.service.EmprestimoService;
@@ -17,7 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
 
-import static com.unp.bibliotecavirtual.service.emprestimo.EmprestimoListProvider.getEmprestimosTeste;
+import static com.unp.bibliotecavirtual.service.emprestimo.utils.EmprestimoListProvider.getEmprestimosTeste;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;

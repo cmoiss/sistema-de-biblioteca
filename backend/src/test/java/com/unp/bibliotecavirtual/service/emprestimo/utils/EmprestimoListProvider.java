@@ -1,4 +1,4 @@
-package com.unp.bibliotecavirtual.service.emprestimo;
+package com.unp.bibliotecavirtual.service.emprestimo.utils;
 
 import com.unp.bibliotecavirtual.model.*;
 
