@@ -7,6 +7,8 @@ import com.unp.bibliotecavirtual.dto.response.LoginResponseDTO;
 
 import com.unp.bibliotecavirtual.exceptions.AutenticacaoException;
 import com.unp.bibliotecavirtual.model.Usuario;
+import com.unp.bibliotecavirtual.model.Cliente;
+import com.unp.bibliotecavirtual.model.Administrador;
 import com.unp.bibliotecavirtual.repository.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ public class AutenticacaoService {
     }
 
     @Transactional(readOnly = true)
-    public LoginResponseDTO autenticar(LoginRequestDTO loginRequestDTO) {
+    public UsuarioTipoResponse autenticar(LoginRequestDTO loginRequestDTO) {
         Usuario usuario = usuarioRepository.findByEmail(loginRequestDTO.email())
                 .orElseThrow(() -> new AutenticacaoException("Credenciais inválidas."));
 
@@ -32,8 +34,19 @@ public class AutenticacaoService {
             throw new AutenticacaoException("Credenciais inválidas.");
         }
 
-        // AGORA USAMOS O MAPPER!
-        // A lógica de conversão foi movida para a classe UsuarioMapper.
-        return UsuarioMapper.toLoginResponseDTO(usuario);
+        boolean isCliente = usuario instanceof Cliente;
+        boolean isAdministrador = usuario instanceof Administrador;
+
+        return new UsuarioTipoResponse(isCliente, isAdministrador);
+    }
+
+    public static class UsuarioTipoResponse {
+        public final boolean isCliente;
+        public final boolean isAdministrador;
+
+        public UsuarioTipoResponse(boolean isCliente, boolean isAdministrador) {
+            this.isCliente = isCliente;
+            this.isAdministrador = isAdministrador;
+        }
     }
 }
