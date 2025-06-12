@@ -13,11 +13,16 @@ export const DashBoardFunctions = () => {
     }
   }, [router]);
 
-  const handleRouterPush = () => {
+  const handleRouterPushLivros = () => {
+    router.push("/dashboard/livros");
+  };
+
+  const handleRouterPushClientes = () => {
     router.push("/dashboard/clientes");
   };
 
   return {
-    handleRouterPush
+    handleRouterPushLivros,
+    handleRouterPushClientes
   };
 };

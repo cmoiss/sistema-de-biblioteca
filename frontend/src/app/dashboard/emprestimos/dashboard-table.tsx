@@ -1,4 +1,5 @@
-import { useBooks } from "@/api-consumer/livro-consumer";
+"use client";
+
 import {
   Table,
   TableBody,
@@ -9,11 +10,12 @@ import {
   TableRow
 } from "@/components/ui/table";
 import { Book } from "@/models/book";
-import { books as booksProvided } from "@/models/books-provider";
 import DeleteBook from "./delete-book";
 import EditBook from "./edit-book-modal";
+import { books as booksProvided } from "@/models/providers/books-provider";
 import { useState } from "react";
 import { LendBookDialog } from "./lend-book-dialog";
+import { useBooks } from "@/service/livro-consumer";
 
 export default function DashboardTable() {
   let books: Book[] = [];
@@ -56,10 +58,12 @@ export default function DashboardTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {books.map((book) => (
-            <TableRow key={book.id}
-            onDoubleClick={() => handleDoubleClick(book)}
-            className="cursor-pointer hover:bg-muted/50 transition-colors">
+          {books.map(book => (
+            <TableRow
+              key={book.id}
+              onDoubleClick={() => handleDoubleClick(book)}
+              className="cursor-pointer hover:bg-muted/50 transition-colors"
+            >
               <TableCell>{book.titulo}</TableCell>
               <TableCell>{book.autor}</TableCell>
               <TableCell>{book.avaliacao}</TableCell>

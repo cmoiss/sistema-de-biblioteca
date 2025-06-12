@@ -34,10 +34,10 @@ export default function EditBook({ book }: EditBookProps) {
   return (
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger>
-          <button className="mr-2 text-slate-800 cursor-pointer">
+        <DialogTrigger asChild>
             <Button>Devolver livro</Button>
-          </button>
+          {/* <button className="mr-2 text-slate-800 cursor-pointer">
+          </button> */}
         </DialogTrigger>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent className="sm:max-w-[425px]">
