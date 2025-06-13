@@ -3,7 +3,7 @@
 import CreateLivroModal from "@/components/dashboard-livros/create-livro-modal";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import DashboardTable from "./dashboard-table";
+import DashboardTable from "./table/dashboard-table";
 import { DashBoardFunctions } from ".";
 
 export default function Dashboard() {

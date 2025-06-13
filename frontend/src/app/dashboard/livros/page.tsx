@@ -42,20 +42,17 @@ export default function Dashboard() {
           onClick={() => router.push("/dashboard/clientes")}
         >
           Gerenciar clientes
+        </Button>{" "}
+        <Button
+          className="cursor-pointer"
+          variant="outline"
+          onClick={() => router.push("/dashboard/emprestimos")}
+        >
+          Gerenciar empréstimos
         </Button>
       </div>
 
-      {/* <Link href={"/dashboard-clientes"}>Gerenciar clientes</Link> */}
-
       <Link href={"/"}>Voltar para página inicial</Link>
-
-      {/* 
-        Navegação entre dashboards (criação de livros e usuário)
-        Botão de cadastrar cliente (add nome,cpf,email,senha)
-        Tela de gerenciamento de clientes (variação do dashboard de livros)
-        Botões de ações: editar e excluir
-        Tabela de usuários
-      */}
     </div>
   );
 }
