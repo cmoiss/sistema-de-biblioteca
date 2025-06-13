@@ -13,6 +13,7 @@ import {
 import useTable from ".";
 import { loansProvider } from "@/models/providers/loans-provider";
 import { CheckCircle, Trash2 } from "lucide-react";
+import { LendBookDialog } from "./lend-book/lend-book-dialog";
 
 export default function DashboardTable() {
   const { getLoans, setLoans, handleReturnLoan } = useTable();
@@ -76,17 +77,9 @@ export default function DashboardTable() {
                     className="p-1 text-red-500 hover:bg-red-50 rounded cursor-pointer"
                     title="Excluir empréstimo"
                   >
-                    {/* Ícone de exclusão */}
                     <Trash2 className="text-slate-400" size={18} />
                   </button>
-                  <button
-                    onClick={() => handleReturnLoan(loan.id)}
-                    className="p-1 text-green-400 hover:bg-green-50 rounded cursor-pointer"
-                    title="Marcar como devolvido"
-                  >
-                    <CheckCircle size={18} />
-                    {/* Ou <PackageCheck size={18} /> */}
-                  </button>
+                  <LendBookDialog />
                 </div>
               </TableCell>
             </TableRow>
