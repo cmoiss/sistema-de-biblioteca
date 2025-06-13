@@ -90,18 +90,19 @@ class RegistrarDevolucaoTest {
         assertFalse(emprestimoDevolvido.isAtivo());
     }
 
-//    @SneakyThrows
-//    @Test
-//    void deveGerarMultaCasoDevolucaoComAtraso() {
-//        LocalDate dataDevolucaoComAtarso = emprestimoRegistrado.getDataDevolucao();
-//
-//        Emprestimo devolvidoComMulta = emprestimoService.registrarDevolucao(
-//                emprestimo.getId()
-//        );
-//        Assertions.assertNotNull(devolvidoComMulta.getMulta());
-//        assertEquals(6.0, devolvidoComMulta.getMulta().getValorCalculado());
-//        assertFalse(devolvidoComMulta.isAtivo());
-//    }
+    @Test
+    void deveGerarMultaCasoDevolucaoComAtraso() throws LivroNotFoundException, EmprestimoNotFoundException {
+        // Data com 3 dias de atraso
+        LocalDate dataDevolucaoComAtraso = LocalDate.now().minusDays(3);
+        emprestimo.setDataDevolucao(dataDevolucaoComAtraso);
+
+        Emprestimo devolvidoComMulta = emprestimoService.registrarDevolucao(
+                emprestimo.getId()
+        );
+        assertNotNull(devolvidoComMulta.getMulta());
+        assertEquals(6.0, devolvidoComMulta.getMulta().getValorCalculado());
+        assertFalse(devolvidoComMulta.isAtivo());
+    }
 
     @Test
     void deveLancarExcecaoCasoEmprestimoNaoExista() {
