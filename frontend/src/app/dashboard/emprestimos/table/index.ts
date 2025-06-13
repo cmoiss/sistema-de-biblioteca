@@ -12,7 +12,5 @@ export default function useTable() {
     setLoansState(newLoans);
   };
 
-  const handleReturnLoan = (loanId: number) => {};
-
-  return { getLoans, setLoans, handleReturnLoan };
+  return { getLoans, setLoans };
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -10,13 +9,14 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
-import useTable from ".";
 import { loansProvider } from "@/models/providers/loans-provider";
-import { CheckCircle, Trash2 } from "lucide-react";
-import { LendBookDialog } from "./lend-book/lend-book-dialog";
+import { Trash2 } from "lucide-react";
+import { useEffect } from "react";
+import useTable from ".";
+import ReturnBookDialog from "./return-book/return-book";
 
 export default function DashboardTable() {
-  const { getLoans, setLoans, handleReturnLoan } = useTable();
+  const { getLoans, setLoans } = useTable();
 
   useEffect(() => {
     setLoans(loansProvider);
@@ -79,7 +79,7 @@ export default function DashboardTable() {
                   >
                     <Trash2 className="text-slate-400" size={18} />
                   </button>
-                  <LendBookDialog />
+                  <ReturnBookDialog loan={loan} setLoans={setLoans} />
                 </div>
               </TableCell>
             </TableRow>
