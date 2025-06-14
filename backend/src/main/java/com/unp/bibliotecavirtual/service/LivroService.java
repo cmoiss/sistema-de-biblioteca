@@ -30,7 +30,7 @@ public class LivroService {
 
     // READ (listar todos)
     public List<Livro> buscarTodos() {
-        return livroRepository.findAll();
+        return livroRepository.findByDeletedFalse();
     }
 
     public Livro editar(Long id, Livro livroAtualizado) {
@@ -51,11 +51,11 @@ public class LivroService {
     }
 
     public void deletar(Livro livro) {
-        // Deve executar SoftDelete
-
         Optional<Livro> existente = livroRepository.findById(livro.getId());
         if (existente.isPresent()) {
-            livroRepository.delete(livro);
+            Livro l = existente.get();
+            l.setDeleted(true);
+            livroRepository.save(l);
         } else {
             throw new RuntimeException("Livro não encontrado para exclusão");
         }
