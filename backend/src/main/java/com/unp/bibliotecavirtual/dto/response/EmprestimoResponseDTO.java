@@ -6,6 +6,8 @@ public record EmprestimoResponseDTO(
         Long id,
         Long clienteId,
         String nomeCliente,
+        String cpf,
+        String isbn,
         Long livroId,
         String tituloLivro,
         LocalDate dataEmprestimo,

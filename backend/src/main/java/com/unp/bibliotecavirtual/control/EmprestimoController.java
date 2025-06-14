@@ -37,10 +37,10 @@ public class EmprestimoController {
         }
     }
 
-    @GetMapping("/cliente/{idCliente}")
-    public ResponseEntity<?> buscarEmprestimoPorCliente(@PathVariable Long idCliente){
+    @GetMapping("/cliente/{clienteId}")
+    public ResponseEntity<?> buscarEmprestimoPorCliente(@PathVariable Long clienteId){
         try {
-            List<Emprestimo> emprestimoDTO = emprestimoService.buscarEmprestimosPorCliente(idCliente);
+            List<Emprestimo> emprestimoDTO = emprestimoService.buscarEmprestimosPorCliente(clienteId);
             return ResponseEntity.ok(emprestimoDTO);
         }catch (ClienteNaoEncontrado exception){
             return ResponseEntity.status(NOT_FOUND).body(exception.getMessage());

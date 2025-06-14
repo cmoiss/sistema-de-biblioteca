@@ -18,6 +18,8 @@ public class EmprestimoMapperDTO {
                 emprestimo.getId(),
                 emprestimo.getCliente().getId(),
                 emprestimo.getCliente().getNome(),
+                emprestimo.getCliente().getCpf(),
+                emprestimo.getLivro().getIsbn(),
                 emprestimo.getLivro().getId(),
                 emprestimo.getLivro().getTitulo(),
                 emprestimo.getDataEmprestimo(),
