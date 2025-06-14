@@ -36,6 +36,9 @@ public class Livro {
     @Setter
     private Integer avaliacao;
 
+    @Column(nullable = false)
+    private boolean deleted = false;
+
     public Livro(String titulo, String autor, String genero, String isbn) {
         this.titulo = titulo;
         this.autor = autor;
