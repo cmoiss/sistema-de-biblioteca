@@ -27,7 +27,7 @@ public class ClienteService {
     }
 
     public List<Cliente> buscarTodos() {
-        return clienteRepository.findAll();
+        return clienteRepository.findByDeletedFalse();
     }
 
     public Cliente buscarPorId(Long id) throws ClienteNaoEncontrado {
@@ -48,7 +48,8 @@ public class ClienteService {
 
     public void deletar(Long id) throws ClienteNaoEncontrado {
         Cliente cliente = buscarPorId(id);
-        clienteRepository.delete(cliente);
+        cliente.setDeleted(true);
+        clienteRepository.save(cliente);
     }
 }
 
